@@ -11,6 +11,12 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import StandardScaler
 import plotly.express as px
 import plotly.graph_objects as go
+import sys
+from getopt import getopt, error
+import warnings
+from pandas.core.common import SettingWithCopyWarning
+
+warnings.simplefilter(action="ignore", category=SettingWithCopyWarning)
 
 
 
@@ -88,7 +94,7 @@ def split_data(stock, lookback=20):
     for index in range(len(data_raw) - lookback): 
         data.append(data_raw[index: index + lookback])
     
-    data = np.array(data);
+    data = np.array(data)
     test_set_size = 378
     train_set_size = 2517
     
@@ -138,8 +144,6 @@ class LSTM(nn.Module):
         out = self.fc(out[:, -1, :]) 
         return out
 
-
-# In[7]:
 
 
 class GRU(nn.Module):
@@ -221,9 +225,9 @@ def train_model(model,criterion,optimizer,X_train,y_train,num_epochs=100,show_gr
         loss = criterion(y_train_pred, y_train)
         print("Epoch ", t, "MSE: ", loss.item())
         hist[t] = loss.item()
-        optimiser.zero_grad()
+        optimizer.zero_grad()
         loss.backward()
-        optimiser.step()
+        optimizer.step()
 
     training_time = time.time()-start_time
     print("Training time: {}".format(training_time))
@@ -322,10 +326,8 @@ def make_csv(df,y_train_pred,y_test_pred,filename,lookback=20):
     df['Predictions'] = y_pred
     
     final_df = df[['Close','Predictions']]
-    try:
-        final_df['Difference'] = np.abs(np.array(final_df['Close']) - np.array(final_df['Predictions']))
-    except:
-        pass
+    
+    final_df['Difference'] = np.abs(np.array(final_df['Close']) - np.array(final_df['Predictions']))
 
     final_df.to_csv(filename)
     
@@ -398,8 +400,6 @@ def visualize_results(price,y_train_pred,y_test_pred,lookback,scaler):
 
     )
 
-
-
     annotations = []
     annotations.append(dict(xref='paper', yref='paper', x=0.0, y=1.05,
                                   xanchor='left', yanchor='bottom',
@@ -465,7 +465,7 @@ def main(dataset,model_file_path):
     test_model_performance(y_train_pred,y_test_pred,y_train,y_test,show_graph=False) 
     
     #store the final results in csv on local computer
-    final_df = make_csv(df,y_train_pred,y_test_pred,filename="results/results.csv")
+    final_df = make_csv(df,y_train_pred,y_test_pred,filename="results.csv")
     
     #Visualize the predictions
     visualize_results(price,y_train_pred,y_test_pred,lookback=20,scaler=scaler)
@@ -475,14 +475,37 @@ def main(dataset,model_file_path):
 
 
 if __name__== '__main__':
-    
+
+    # Fetch arguments
+    args = sys.argv[1:]
+
+    # Define options
+    short_options = 'p:m'
+    long_options = ['path=', 'model=']
+    try:
+        arguments, values = getopt(args, short_options, long_options)
+    except error as err:
+        print('\n##########################################################################################################')
+        print(str(err))
+        print('##########################################################################################################\n')
+        sys.exit(2)
+
+    # Define default choices
+    dataset = "dataset/dataset 2010 to 2021.csv"
+    model_file_path = "model/model.pth"
+
+    # Set custom choices
+    for current_argument, current_value in arguments:
+        if current_argument in ('-p', '--path'):
+            dataset = current_value if len(current_value) > 0 else None
+        elif current_argument in ('-m', '--model'):
+            model_file_path = current_value 
+
+
     print('\n===========================================================================================================')
     print('The program will attempt to predict Stock Prices from the dataset given for the duration 01/04/2010 - Present')
     print('===========================================================================================================\n')
     
-    
-    dataset = "dataset/dataset 2010 to 2021.csv"
-    model_file_path = "model/model.pth"
     
     main(dataset,model_file_path)
     
