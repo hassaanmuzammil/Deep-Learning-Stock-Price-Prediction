@@ -1,0 +1,31 @@
+Introduction:
+The code is aimed at using deep learning algorithms like LSTMs and GRUs to predict stock prices of a certain company. 
+The dataset is available for the past 10 years and includes the opening, high, low, and closing prices of stocks for most of the days.
+
+Methodology:
+The program intakes the dataset file path and a saved model state dict (you can also train your own model with a few amendments).
+
+For preprocessing I used StandardScaler from sklearn library. MinMaxScaler can also be used for this purpose.
+
+For training, the lookback or the number of days for training and prediction used were 20.
+
+The train set was formed from the data of 2010 to 2019 inclusive. 
+The test set was formed from the data of 2020 to 2021 inclusive.
+
+The best model developed was GRU with the following model features:
+Input Dimension: 1
+Hidden Dimension: 256
+Output Dimension: 1
+Hidden Layers: 1
+
+Since the model is very simple, the training time on cpu was about 1 minute for 100 epochs.
+
+For evaluation, the RMSE for train and test set were evaluated. Also, the graph of stock closing value predictions was visualized wrt to the actual closing stock values.
+
+The model outputs a .csv file with shows the difference between the actual and predicted stock closing prices.
+The train, test, and overall results can also be visualized and are saved in the results directory.
+
+References:
+- https://medium.com/swlh/stock-price-prediction-with-pytorch-37f52ae84632
+- https://www.kaggle.com/rodsaldanha/stock-prediction-pytorch
+- https://towardsdatascience.com/lstm-time-series-forecasting-predicting-stock-prices-using-an-lstm-model-6223e9644a2f
