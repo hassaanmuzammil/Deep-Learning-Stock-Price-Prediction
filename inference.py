@@ -481,8 +481,8 @@ if __name__== '__main__':
     print('===========================================================================================================\n')
     
     
-    dataset = "/Users/hassaanmuzammil/Downloads/ml-task/Task2-Solution/dataset/dataset 2010 to 2021.csv"
-    model_file_path = "/Users/hassaanmuzammil/Downloads/ml-task/Task2-Solution/model/model.pth"
+    dataset = "dataset/dataset 2010 to 2021.csv"
+    model_file_path = "model/model.pth"
     
     main(dataset,model_file_path)
     
