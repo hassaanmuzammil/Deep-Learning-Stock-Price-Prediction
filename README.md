@@ -18,7 +18,7 @@ python3 inference.py --path="dataset/dataset 2010 to 2021.csv" --model="model/mo
 
 Results will be stored in results/results.csv which looks like this
 
-![image](https://user-images.githubusercontent.com/52124348/125099295-4e47ca80-e0f1-11eb-81b9-49c71ec27214.png)
+![image](https://user-images.githubusercontent.com/52124348/125099694-bac2c980-e0f1-11eb-8d57-cee70c4faa9b.png)
 
 The terminal output looks like this
 
