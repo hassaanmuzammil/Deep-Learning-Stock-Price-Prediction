@@ -1,9 +1,16 @@
 # Deep-Learning-Stock-Price-Prediction
 
+Create a virtual python 3.7.4 environment and make sure all requirements are satisfied
+```
+pip3 install -r requirements.txt
+```
+
+
 Open terminal and use the following command to clone the repository
 ```
 git clone https://github.com/hassaanmuzammil/Deep-Learning-Stock-Price-Prediction.git
 ```
+
 
 cd to the Deep-Learning-Stock-Price-Prediction
 ```
