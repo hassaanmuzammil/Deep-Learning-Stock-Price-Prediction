@@ -16,7 +16,9 @@ Run the following python3 script
 python3 inference.py --path="dataset/dataset 2010 to 2021.csv" --model="model/model.pth" 
 ```
 
-Results will be stored in results/results.csv
+Results will be stored in results/results.csv which looks like this
+
+![image](https://user-images.githubusercontent.com/52124348/125099295-4e47ca80-e0f1-11eb-81b9-49c71ec27214.png)
 
 The terminal output looks like this
 
