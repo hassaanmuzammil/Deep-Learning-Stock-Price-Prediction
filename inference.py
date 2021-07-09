@@ -284,13 +284,13 @@ def test_model_performance(y_train_pred,y_test_pred,y_train,y_test,show_graph=Fa
     from sklearn.metrics import mean_squared_error
 
     # calculate root mean squared error
-    print('\n\n------------------------------------------------------')
+    print('\n\n---------------------------------------------------------')
     print('The final train and test set root mean squared errors are:')
     trainScore = math.sqrt(mean_squared_error(y_train[:,0], y_train_pred[:,0]))
     print('Train Score: %.2f RMSE' % (trainScore))
     testScore = math.sqrt(mean_squared_error(y_test[:,0], y_test_pred[:,0]))
     print('Test Score: %.2f RMSE' % (testScore))
-    print('------------------------------------------------------\n\n')
+    print('---------------------------------------------------------\n\n')
     
     if show_graph:
         plt.figure(figsize=(10,5))
@@ -331,14 +331,18 @@ def make_csv(df,y_train_pred,y_test_pred,filename,lookback=20):
 
     final_df.to_csv(filename)
     
+    print('--------------------------------------------------------------------')
+    print('The final csv file is stored as results.csv in the directory results')
+    print('--------------------------------------------------------------------')
+    
     return final_df
 
 
 def visualize_results(price,y_train_pred,y_test_pred,lookback,scaler):
     
-    print("\n\n========================================================")
+    print("\n\n------------------------------------------------------")
     print("Head over to the local host to see the graphical results")
-    print("========================================================\n\n")
+    print("------------------------------------------------------\n\n")
     # shift train predictions for plotting
     trainPredictPlot = np.empty_like(price)
     trainPredictPlot[:, :] = np.nan
@@ -482,6 +486,7 @@ if __name__== '__main__':
     # Define options
     short_options = 'p:m'
     long_options = ['path=', 'model=']
+
     try:
         arguments, values = getopt(args, short_options, long_options)
     except error as err:
@@ -491,9 +496,10 @@ if __name__== '__main__':
         sys.exit(2)
 
     # Define default choices
-    dataset = "dataset/dataset 2010 to 2021.csv"
-    model_file_path = "model/model.pth"
-
+    #dataset = "dataset/dataset 2010 to 2021.csv"
+    #model_file_path = "model/model.pth"
+    
+    
     # Set custom choices
     for current_argument, current_value in arguments:
         if current_argument in ('-p', '--path'):
