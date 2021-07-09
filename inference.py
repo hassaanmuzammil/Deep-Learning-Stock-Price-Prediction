@@ -465,7 +465,7 @@ def main(dataset,model_file_path):
     test_model_performance(y_train_pred,y_test_pred,y_train,y_test,show_graph=False) 
     
     #store the final results in csv on local computer
-    final_df = make_csv(df,y_train_pred,y_test_pred,filename="results.csv")
+    final_df = make_csv(df,y_train_pred,y_test_pred,filename="results/results.csv")
     
     #Visualize the predictions
     visualize_results(price,y_train_pred,y_test_pred,lookback=20,scaler=scaler)
