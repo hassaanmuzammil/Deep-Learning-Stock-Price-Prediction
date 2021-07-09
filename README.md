@@ -24,5 +24,6 @@ The terminal output looks like this
 
 ![image](https://user-images.githubusercontent.com/52124348/125098732-ba75fe80-e0f0-11eb-85c7-d143ac9de615.png)
 
+Refer to summary.txt for further details
 
 
