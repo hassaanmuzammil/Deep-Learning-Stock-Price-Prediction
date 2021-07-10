@@ -8,7 +8,7 @@ git clone https://github.com/hassaanmuzammil/Deep-Learning-Stock-Price-Predictio
 
 cd to the Deep-Learning-Stock-Price-Prediction
 ```
-cd Downloads/Deep-Learning-Stock-Price-Prediction
+cd Deep-Learning-Stock-Price-Prediction
 ```
 
 Create a virtual python 3.7.4 environment and make sure all requirements are satisfied
