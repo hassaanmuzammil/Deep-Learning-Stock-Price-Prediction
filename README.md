@@ -17,6 +17,7 @@ pip3 install -r requirements.txt
 ```
 
 Check updated model.pth and dataset 2010 to 2021.csv files
+
 Run the following python3 script
 ```
 python3 inference.py --path="dataset/dataset 2010 to 2021.csv" --model="model/model.pth" 
